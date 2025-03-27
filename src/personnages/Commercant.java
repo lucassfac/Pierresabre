@@ -15,10 +15,9 @@ public class Commercant extends Humain {
 
 	public void recevoir(int argent) {
 		gagnerArgent(argent);
-		parler(getArgent() + " sous ! Je te remercie généreux donateur !");
+		parler(getArgent() + " sous ! Je te remercie gï¿½nï¿½reux donateur !");
 	}
 
-	@Override
 	private void parler(String texte) {
 		System.out.println("(" + getNom() + ")" + " - " + texte);
 	}
