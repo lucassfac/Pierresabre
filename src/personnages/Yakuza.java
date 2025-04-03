@@ -10,46 +10,50 @@ public class Yakuza extends Humain {
 		this.clan = clan;
 
 	}
-	
+
 	public String getClan() {
 		return this.clan;
 	}
-	
 
 	public void extorquer(Commercant victime) {
-		parler("Tiens, tiens, ne serait-ce pas un faible marchand qui passe par lï¿½ ?");
-		parler(victime.getNom() + " si tu tiens ï¿½ la vie donne moi ta bourse !");
+		parler("Tiens, tiens, ne serait-ce pas un faible marchand qui passe par ici ?");
+		parler(victime.getNom() + " si tu tiens a la vie donne moi ta bourse !");
 		int argent = victime.getArgent();
 		int temp = victime.getArgent();
 		victime.seFaireExtorquer();
 		gagnerArgent(argent);
-		parler("J'ai pique les " + temp + " sous de " + victime.getNom() + ", ce qui me fait " + getArgent() + " sous dans ma poche. Hi Hi!");
+		parler("J'ai pique les " + temp + " sous de " + victime.getNom() + ", ce qui me fait " + getArgent()
+				+ " sous dans ma poche. Hi Hi!");
 		this.reputation += 1;
 	}
 
 	private void parler(String texte) {
 		System.out.println("(" + getNom() + ")" + " - " + texte);
 	}
-	
+
 	public int perdre() {
 		int argent = getArgent();
-		parler("Jâ€™ai perdu mon duel et mes " + getArgent() + " sous, snif... J'ai dÃ©shonorÃ© le clan de " + getClan()
+		parler("J'ai perdu mon duel et mes " + getArgent() + " sous, snif... J'ai desohonoré le clan de " + getClan()
 				+ ".");
 		perdreArgent(argent);
 		reputation -= 1;
 		return argent;
 	}
 
-	public int gagner(int gain) {
-		int argent = getArgent();
-		parler("Ce ronin pensait vraiment battre " +  getNom() + " du clan de "  + getClan()
-				+ " Je l'ai dÃ©pouillÃ© de ses " + gain + " sous." );
+	public void gagner(int gain) {
+		parler("Ce ronin pensait vraiment battre " + getNom() + " du clan de " + getClan()
+				+ " Je l'ai dépouillé de ses " + gain + " sous.");
 		gagnerArgent(gain);
-		return argent;
-		
+
 	}
-	
+
 	public int getReputation() {
 		return this.reputation;
+	}
+
+	@Override
+	public void direBonjour() {
+		super.direBonjour();
+		parler("Mon clan est celui de " + getClan());
 	}
 }
